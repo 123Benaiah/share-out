@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>December 2025 Share-Out | Group Orders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/shopping-cart.png">
+    <style>
+        /* ====== RESET & BASE STYLES ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 15px;
+        }
+
+        /* ====== HEADER ====== */
+        .header {
+            background: linear-gradient(135deg, #4a6fa5 0%, #2c5282 100%);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(44, 82, 130, 0.2);
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .current-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 15px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            min-width: 120px;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* ====== MAIN CONTENT ====== */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e9ecef;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #2c5282;
+        }
+
+        .card-header i {
+            font-size: 1.5rem;
+            margin-right: 12px;
+            background: linear-gradient(135deg, #4a6fa5, #2c5282);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-header h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        /* ====== BUTTONS ====== */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+            color: white;
+            box-shadow: 0 6px 15px rgba(56, 161, 105, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2f855a 0%, #276749 100%);
+            box-shadow: 0 8px 20px rgba(56, 161, 105, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #4a6fa5 0%, #2c5282 100%);
+            color: white;
+            box-shadow: 0 6px 15px rgba(44, 82, 130, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #2c5282 0%, #1a365d 100%);
+            box-shadow: 0 8px 20px rgba(44, 82, 130, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: white;
+            color: #2c5282;
+            border: 2px solid #2c5282;
+            box-shadow: 0 4px 12px rgba(44, 82, 130, 0.1);
+        }
+
+        .btn-outline:hover {
+            background: #f7f9fc;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(44, 82, 130, 0.15);
+        }
+
+        /* ====== INSTRUCTIONS ====== */
+        .instructions {
+            background: #f0f7ff;
+            border-left: 5px solid #4a6fa5;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+
+        .instructions li strong {
+            color: #2c5282;
+        }
+
+        /* ====== PRODUCT LIST ====== */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .product-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+            transition: all 0.2s;
+        }
+
+        .product-item:hover {
+            background: #e9ecef;
+            border-color: #4a6fa5;
+        }
+
+        .product-icon {
+            font-size: 1.8rem;
+            color: #4a6fa5;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #2c5282;
+        }
+
+        /* ====== QR CODE SECTION ====== */
+        .qr-section {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .qr-code {
+            max-width: 200px;
+            margin: 15px auto;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* ====== TOTALS TABLE ====== */
+        .totals-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        .totals-table th {
+            background: #2c5282;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .totals-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .totals-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .count-badge {
+            background: #38a169;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        /* ====== FOOTER ====== */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            color: #6c757d;
+            font-size: 0.9rem;
+            background: white;
+            border-radius: 20px 20px 0 0;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #4a6fa5;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: #2c5282;
+            text-decoration: underline;
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .stat-item {
+                min-width: 100px;
+                padding: 8px 12px;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .btn {
+                padding: 16px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                border-radius: 0 0 15px 15px;
+            }
+            
+            .current-stats {
+                gap: 10px;
+            }
+            
+            .stat-item {
+                min-width: 80px;
+                padding: 6px 10px;
+            }
+            
+            .stat-number {
+                font-size: 1.3rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-users"></i>
+        </div>
+        <h1>DECEMBER 2025 SHARE-OUT</h1>
+        <p class="subtitle">Group One & Group Two • Product Order System</p>
+        
+        <div class="current-stats">
+            <div class="stat-item">
+                <span class="stat-number" id="totalOrders">0</span>
+                <span class="stat-label">Total Orders</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="groupOne">0</span>
+                <span class="stat-label">Group One</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="groupTwo">0</span>
+                <span class="stat-label">Group Two</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="main-content">
+            
+            <!-- SUBMIT ORDER CARD -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-edit"></i>
+                    <h2>Submit Your Order</h2>
+                </div>
+                
+                <div class="instructions">
+                    <p><strong>How to order:</strong></p>
+                    <ol>
+                        <li><strong>Click the green button below</strong> to open order form</li>
+                        <li><strong>Fill in your details:</strong> Name, Group, Products</li>
+                        <li><strong>Submit the form</strong> - that's it!</li>
+                        <li><strong>Your order will be automatically recorded</strong></li>
+                    </ol>
+                </div>
+                
+                <!-- REPLACE THIS LINK WITH YOUR ACTUAL GOOGLE FORM LINK -->
+                <a href="https://forms.google.com" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-pen-alt"></i>
+                    Submit Your Order Now
+                </a>
+                
+                <p style="text-align: center; margin-top: 15px; color: #6c757d; font-size: 0.9rem;">
+                    <i class="fas fa-mobile-alt"></i> Works perfectly on all phones
+                </p>
+            </div>
+
+            <!-- VIEW TOTALS CARD -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar"></i>
+                    <h2>Live Order Totals</h2>
+                </div>
+                
+                <p>See what everyone is ordering in real-time. Updated automatically.</p>
+                
+                <div class="instructions">
+                    <p><strong>Current Most Popular:</strong></p>
+                    <p>• Washing Powder: <strong id="topPowder">Boom</strong></p>
+                    <p>• Bathing Soap: <strong id="topSoap">Lifebuoy Lemon</strong></p>
+                    <p>• Sugar: <strong id="topSugar">Bale</strong></p>
+                </div>
+                
+                <button onclick="showTotals()" class="btn btn-secondary">
+                    <i class="fas fa-chart-pie"></i>
+                    View Detailed Totals
+                </button>
+                
+                <div class="qr-section">
+                    <p><strong>Scan to Open Form:</strong></p>
+                    <div class="qr-code">
+                        <!-- Replace with your actual Google Form QR code -->
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://forms.google.com" 
+                             alt="Scan QR code to open order form">
+                    </div>
+                    <p style="font-size: 0.85rem; color: #6c757d; margin-top: 10px;">
+                        Point your phone camera at the QR code
+                    </p>
+                </div>
+            </div>
+
+            <!-- PRODUCTS AVAILABLE CARD -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h2>Available Products</h2>
+                </div>
+                
+                <p>Choose from these available options:</p>
+                
+                <h3 style="margin-top: 20px; color: #2c5282; font-size: 1.1rem;">
+                    <i class="fas fa-pump-soap"></i> Washing Powder
+                </h3>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <div class="product-icon"><i class="fas fa-box"></i></div>
+                        <div class="product-name">Boom</div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-icon"><i class="fas fa-box"></i></div>
+                        <div class="product-name">Aloha</div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-icon"><i class="fas fa-box"></i></div>
+                        <div class="product-name">Rapid</div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-icon"><i class="fas fa-box"></i></div>
+                        <div class="product-name">Banja</div>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 25px; color: #2c5282; font-size: 1.1rem;">
+                    <i class="fas fa-soap"></i> Bathing Soap
+                </h3>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <div class="product-name">Lifebuoy Tumeric</div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-name">Lifebuoy Lemon</div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-name">Protex deep clean</div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-name">Dettol original</div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-name">+ 20 more options</div>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 25px; color: #2c5282; font-size: 1.1rem;">
+                    <i class="fas fa-cube"></i> Sugar
+                </h3>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <div class="product-icon"><i class="fas fa-weight-hanging"></i></div>
+                        <div class="product-name">Bale</div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-icon"><i class="fas fa-weight"></i></div>
+                        <div class="product-name">10KG</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOWNLOAD PDF CARD -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-file-pdf"></i>
+                    <h2>Download Shopping List</h2>
+                </div>
+                
+                <p>Generate a PDF shopping list with all orders for easy purchasing.</p>
+                
+                <button onclick="generatePDF()" class="btn btn-outline">
+                    <i class="fas fa-download"></i>
+                    Download PDF Summary
+                </button>
+                
+                <div class="instructions" style="margin-top: 20px;">
+                    <p><strong>PDF Includes:</strong></p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Complete list of all orders</li>
+                        <li>Total quantities for each product</li>
+                        <li>Group-wise breakdown</li>
+                        <li>Date and time stamp</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p><i class="fas fa-cogs"></i> Powered by Google Forms & Google Sheets</p>
+        <p>No apps to install • 100% Free • Works on any phone</p>
+        
+        <div class="footer-links">
+            <a href="#" onclick="showInstructions()">
+                <i class="fas fa-question-circle"></i> Help
+            </a>
+            <a href="mailto:youremail@example.com">
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+            <a href="#" onclick="refreshTotals()">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </a>
+        </div>
+        
+        <p style="margin-top: 20px; font-size: 0.85rem;">
+            Share this link: <strong id="siteUrl">your-username.github.io/share-out</strong>
+        </p>
+    </div>
+
+    <!-- TOTALS MODAL (Hidden by default) -->
+    <div id="totalsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; overflow-y: auto; padding: 20px;">
+        <div style="background: white; max-width: 800px; margin: 40px auto; border-radius: 20px; padding: 30px; position: relative;">
+            <button onclick="hideTotals()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5rem; color: #666; cursor: pointer;">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <h2 style="color: #2c5282; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-chart-pie"></i> Detailed Order Totals
+            </h2>
+            
+            <div id="totalsContent">
+                <!-- Totals will be loaded here -->
+                <p style="text-align: center; padding: 40px; color: #666;">
+                    <i class="fas fa-spinner fa-spin"></i> Loading totals...
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ====== CONFIGURATION ======
+        // REPLACE THESE WITH YOUR ACTUAL VALUES
+        const GOOGLE_FORM_URL = "https://forms.google.com"; // Your actual Google Form link
+        const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/"; // Your Google Sheet link
+        const SITE_URL = "your-username.github.io/share-out"; // Your GitHub Pages URL
+        
+        // ====== INITIALIZATION ======
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update site URL in footer
+            document.getElementById('siteUrl').textContent = SITE_URL;
+            
+            // Update Google Form link (replace with your actual link)
+            const formLink = document.querySelector('a[href="https://forms.google.com"]');
+            if (formLink) {
+                formLink.href = GOOGLE_FORM_URL;
+            }
+            
+            // Update QR code with actual form link
+            const qrCode = document.querySelector('.qr-code img');
+            if (qrCode) {
+                qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(GOOGLE_FORM_URL)}`;
+            }
+            
+            // Load initial totals
+            loadTotals();
+            
+            // Auto-refresh totals every 30 seconds
+            setInterval(loadTotals, 30000);
+        });
+        
+        // ====== FUNCTIONS ======
+        function loadTotals() {
+            // In a real implementation, this would fetch from Google Sheets API
+            // For now, we'll use mock data that you can update manually
+            
+            // Mock data - REPLACE THESE WITH ACTUAL NUMBERS FROM YOUR GOOGLE SHEET
+            const mockData = {
+                totalOrders: 48,
+                groupOne: 30,
+                groupTwo: 18,
+                topPowder: "Boom (83%)",
+                topSoap: "Lifebuoy Lemon (38%)",
+                topSugar: "Bale (98%)"
+            };
+            
+            // Update display
+            document.getElementById('totalOrders').textContent = mockData.totalOrders;
+            document.getElementById('groupOne').textContent = mockData.groupOne;
+            document.getElementById('groupTwo').textContent = mockData.groupTwo;
+            document.getElementById('topPowder').textContent = mockData.topPowder;
+            document.getElementById('topSoap').textContent = mockData.topSoap;
+            document.getElementById('topSugar').textContent = mockData.topSugar;
+            
+            // Save to localStorage for PDF generation
+            localStorage.setItem('orderTotals', JSON.stringify(mockData));
+        }
+        
+        function showTotals() {
+            const modal = document.getElementById('totalsModal');
+            const content = document.getElementById('totalsContent');
+            
+            // Get current data
+            const totals = JSON.parse(localStorage.getItem('orderTotals')) || {
+                totalOrders: 0,
+                groupOne: 0,
+                groupTwo: 0
+            };
+            
+            // Create totals HTML
+            content.innerHTML = `
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: #2c5282; margin-bottom: 15px; border-bottom: 2px solid #e9ecef; padding-bottom: 10px;">
+                        <i class="fas fa-users"></i> Overall Summary
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: 800; color: #38a169;">${totals.totalOrders}</div>
+                            <div style="color: #666; margin-top: 5px;">Total Orders</div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: 800; color: #4a6fa5;">${totals.groupOne}</div>
+                            <div style="color: #666; margin-top: 5px;">Group One</div>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: 800; color: #4a6fa5;">${totals.groupTwo}</div>
+                            <div style="color: #666; margin-top: 5px;">Group Two</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: #2c5282; margin-bottom: 15px; border-bottom: 2px solid #e9ecef; padding-bottom: 10px;">
+                        <i class="fas fa-pump-soap"></i> Washing Powder Totals
+                    </h3>
+                    <table class="totals-table">
+                        <tr><td>Boom</td><td><span class="count-badge">40</span> (83%)</td></tr>
+                        <tr><td>Aloha</td><td><span class="count-badge">7</span> (15%)</td></tr>
+                        <tr><td>Rapid</td><td><span class="count-badge">1</span> (2%)</td></tr>
+                        <tr><td>Banja</td><td><span class="count-badge">0</span> (0%)</td></tr>
+                    </table>
+                </div>
+                
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: #2c5282; margin-bottom: 15px; border-bottom: 2px solid #e9ecef; padding-bottom: 10px;">
+                        <i class="fas fa-soap"></i> Top 5 Bathing Soaps
+                    </h3>
+                    <table class="totals-table">
+                        <tr><td>Lifebuoy Lemon</td><td><span class="count-badge">18</span> (38%)</td></tr>
+                        <tr><td>Dettol original</td><td><span class="count-badge">12</span> (25%)</td></tr>
+                        <tr><td>Lifebuoy Tumeric</td><td><span class="count-badge">8</span> (17%)</td></tr>
+                        <tr><td>Protex deep clean</td><td><span class="count-badge">5</span> (10%)</td></tr>
+                        <tr><td>Dettol Eventone</td><td><span class="count-badge">3</span> (6%)</td></tr>
+                    </table>
+                </div>
+                
+                <div style="background: #f0f7ff; padding: 20px; border-radius: 12px; margin-top: 30px;">
+                    <h4 style="color: #2c5282; margin-bottom: 10px;">
+                        <i class="fas fa-shopping-cart"></i> Recommended Shopping List
+                    </h4>
+                    <ul style="padding-left: 20px; color: #333;">
+                        <li><strong>Boom Washing Powder:</strong> 40 packs</li>
+                        <li><strong>Lifebuoy Lemon Soap:</strong> 18 bars</li>
+                        <li><strong>Dettol original Soap:</strong> 12 bars</li>
+                        <li><strong>Aloha Washing Powder:</strong> 7 packs</li>
+                        <li><strong>Bale Sugar:</strong> 48 units</li>
+                    </ul>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+        
+        function hideTotals() {
+            document.getElementById('totalsModal').style.display = 'none';
+        }
+        
+        function generatePDF() {
+            // In a real implementation, this would:
+            // 1. Fetch data from Google Sheets
+            // 2. Generate PDF using Google Apps Script
+            // 3. Download the PDF
+            
+            // For now, we'll show instructions
+            alert(`📋 PDF GENERATION INSTRUCTIONS:
+
+1. Go to your Google Sheet: ${GOOGLE_SHEET_URL}
+2. Click "File" → "Download" → "PDF Document (.pdf)"
+3. Save the PDF to your phone
+4. Share with your group or use for shopping
+
+✅ Your Google Sheet already has all the totals and shopping list!`);
+            
+            // Alternative: Open print dialog
+            // window.print();
+        }
+        
+        function refreshTotals() {
+            document.getElementById('totalOrders').innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            document.getElementById('groupOne').innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            document.getElementById('groupTwo').innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            
+            setTimeout(() => {
+                loadTotals();
+                alert('Totals refreshed!');
+            }, 1000);
+        }
+        
+        function showInstructions() {
+            alert(`📱 HOW TO USE THIS SYSTEM:
+
+1. FOR MEMBERS:
+   • Click "Submit Your Order Now"
+   • Fill the Google Form
+   • Submit - that's it!
+
+2. FOR YOU (ADMIN):
+   • All orders go to Google Sheets automatically
+   • Totals update in real-time
+   • Download PDF from Google Sheets
+
+3. TOTALS UPDATE:
+   • The website shows approximate totals
+   • For exact numbers, check Google Sheets directly
+   • Refresh the page to update numbers
+
+Need help? Check your Google Sheet for exact totals!`);
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('totalsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideTotals();
+            }
+        });
+    </script>
+</body>
+</html>
